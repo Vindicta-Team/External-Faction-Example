@@ -15,9 +15,11 @@ Modify these files by providing proper names, descriptions and links wherever yo
 - `mod.cpp`
 - `addon\config.cpp`
 
-Edit `PBO_FILE_NAME.txt`. Its content must contain a proper string without spaces or weird characters and without a newline at the end. It also must be unique as it will be PBO file name loaded by Arma. 
+Edit `PBO_FILE_NAME.txt`. Its content must contain a proper string without spaces or 'weird' characters and without a newline at the end. It also must be unique as it will be PBO file name loaded by Arma. 
 
-## 3. Provide faction description and loadouts
+## 3. Add faction and loadouts
+
+### Edit config.cpp
 
 Open `addon\config.cpp`. You will see something like this:
 ```
@@ -27,4 +29,18 @@ Open `addon\config.cpp`. You will see something like this:
 		version = 1;
 	};
 ```
-Here you must rename `MilitaryFactionExample` to a unique class name - most likely matching your faction name, again without any spaces. Each new class in `VinExternalFactions` class has an entry for one faction definition file (in this example `initMilitary.sqf`). If you are going to add more than one faction to this PBO file, add more classes, but replace  `loadoutsInitFile = PATH_TO_FILE(initLoadouts.sqf);` to `loadoutsInitFile = ""`;
+Here you must rename `MilitaryFactionExample` to a unique class name - most likely matching your faction name, again without any spaces. Each new class in `VinExternalFactions` class has an entry for one faction definition file (in this example `initMilitary.sqf`). If you are going to add more than one faction to this PBO file, add more classes, but replace  `loadoutsInitFile = PATH_TO_FILE(initLoadouts.sqf);` to `loadoutsInitFile = "";` because `initLoadouts.sqf` must be referenced only once, it will have initialization code for all the loadouts in this pbo file.
+
+### Edit faction files
+
+In this example only `initMilitary.sqf` is provided. Faction files added through addon follow same rules as faction files added through mission. You can add more faction files, but you will need to add a new class for each new faction through `config.cpp` as described above.
+
+### Add loadouts
+
+Loadouts can be added to `addon\loadouts` folder. File name of the loadout file (without .sqf extension) will match to loadout name used in the mission.
+
+## Build arma addon
+
+Run `buildArmaMod.ps1` (right click -> Run with Powershell).
+
+The generated addon will be in `_build` folder. You can load it as a local Arma mod or upload it to Steam Workshop through `Arma Tools -> Publisher`.
