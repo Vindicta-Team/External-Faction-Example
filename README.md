@@ -4,6 +4,8 @@ This is the base project for adding factions to Vindicta as external addons. The
 
 Factions can be added this way since Vindicta version 0.46.
 
+Rules for creating factions and loadouts through this method are same as for the standard way. You can find information at [Vindicta Wiki](https://github.com/Sparker95/Vindicta/wiki).
+
 # How to use
 
 ## 1. Install these tools:
