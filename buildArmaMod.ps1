@@ -4,30 +4,31 @@ $armaToolsFolder = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"
 
 
 $pboFileName = Get-Content -Path "PBO_FILE_NAME.txt" -TotalCount 1
-"Read PBO file name: $pboFileName"
+"Read PBO file name: $pboFileName`n"
 
 
 $modBuildPath = "_build\@$pboFileName"
 
 
-"Ensure directories.."
+"Ensure directories..`n"
 New-Item "_build" -ItemType Directory -Force > $null
 forEach ($folder in (Get-Childitem -directory -name "_build")) {
     Remove-Item "_build\$folder" -Recurse -Force
 }
 New-Item $modBuildPath -ItemType Directory -Force > $null
 New-Item "$modBuildPath\addons" -ItemType Directory -Force > $null
+New-Item "$modBuildPath\keys" -ItemType Directory -Force > $null
 
 
-"Copy extra files.."
-Copy-Item "Arma mod\mod.cpp" $modBuildPath > $null
+"Copy extra files..`n"
+Copy-Item "mod.cpp" $modBuildPath > $null
 
 
-"Copy addons.."
-Copy-Item "Arma mod\addons\addon" "$modBuildPath\addons" -Recurse > $null
+"Copy addons..`n"
+Copy-Item "addon" "$modBuildPath\addons" -Recurse > $null
 
 
-"Generate PBO_FILE_NAME.hpp"
+"Generate PBO_FILE_NAME.hpp`n"
 Remove-Item "$modBuildPath\addons\addon\PBO_FILE_NAME.hpp"
 "// Auto generated file`n#define PBO_FILE_NAME $pboFileName" >> "$modBuildPath\addons\addon\PBO_FILE_NAME.hpp"
 
@@ -44,18 +45,33 @@ foreach ($file in $loadoutfiles) {
     $initLoadoutsSQF += "[`"$loadoutName`", `PATH_TO_FILE(loadouts\$fileName)] call t_fnc_addLoadout;`n"
 }
 $initLoadoutsSQF | Out-File -FilePath "$modBuildPath\addons\addon\initLoadouts.sqf" -NoNewline -Encoding UTF8
+"`n"
 
 
-"Rename folder.."
+"Rename folder..`n"
 Rename-Item "$modBuildPath\addons\addon" "$pboFileName"
 
-"Build pbos..."
+"Build pbos...`n"
 
 & "$armaToolsFolder\AddonBuilder\AddonBuilder.exe" "$PSScriptRoot\$modBuildPath\addons\$pboFileName" "$PSScriptRoot\$modBuildPath\addons" -packonly -prefix="$pboFileName"
 
 
-"Delete temp folder.."
+"Delete temp folder..`n"
 Remove-Item "$modBuildPath\addons\$pboFileName" -Recurse -Force
+
+"`nCreate key..."
+Push-Location
+Set-Location "_build"
+& "$armaToolsFolder\DSSignFile\DSCreateKey" "$pboFileName"
+Copy-Item "$pboFileName.bikey" "@$pboFileName\keys" -Force
+
+"`nSign PBO files..."
+Set-Location "@$pboFileName\addons"
+$pboFiles = Get-ChildItem -Name "*.pbo"
+forEach ($file in $pboFiles) {
+    "Signing file $file ..."
+    & "$armaToolsFolder\DSSignFile\DSSignFile" "..\..\$pboFileName.biprivatekey" $file
+}
 
 Pop-Location
 
