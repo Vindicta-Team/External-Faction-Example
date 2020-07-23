@@ -43,6 +43,11 @@ Loadouts can be added to `addon\loadouts` folder. File name of the loadout file 
 
 ## Build arma addon
 
+Open `buildArmaMod.ps1`, find this line:
+`$armaToolsFolder = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"`
+
+Ensure that it is pointing at the correct Arma tools installation folder.
+
 Run `buildArmaMod.ps1` (right click -> Run with Powershell).
 
 The generated addon will be in `_build` folder. You can load it as a local Arma mod or upload it to Steam Workshop through `Arma Tools -> Publisher`.
