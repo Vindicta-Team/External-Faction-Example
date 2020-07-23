@@ -41,7 +41,7 @@ In this example only `initMilitary.sqf` is provided. Faction files added through
 
 Loadouts can be added to `addon\loadouts` folder. File name of the loadout file (without .sqf extension) will match to loadout name used in the mission.
 
-## Build arma addon
+## 4. Build arma addon
 
 Open `buildArmaMod.ps1`, find this line:
 `$armaToolsFolder = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"`
@@ -52,7 +52,7 @@ Run `buildArmaMod.ps1` (right click -> Run with Powershell).
 
 The generated addon will be in `_build` folder. You can load it as a local Arma mod or upload it to Steam Workshop through `Arma Tools -> Publisher`.
 
-## Try it in Vindicta
+## 5. Try it in Vindicta
 If all is correct, you will see your faction in faction selection screen at game start.
 To be sure, search through .rpt file for errors. Use the class name you provided in `config.cpp` as search filter.
 
