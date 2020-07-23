@@ -11,6 +11,7 @@ $modBuildPath = "_build\@$pboFileName"
 
 
 "Ensure directories.."
+New-Item "_build" -ItemType Directory -Force > $null
 forEach ($folder in (Get-Childitem -directory -name "_build")) {
     Remove-Item "_build\$folder" -Recurse -Force
 }
