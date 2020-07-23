@@ -44,3 +44,19 @@ Loadouts can be added to `addon\loadouts` folder. File name of the loadout file 
 Run `buildArmaMod.ps1` (right click -> Run with Powershell).
 
 The generated addon will be in `_build` folder. You can load it as a local Arma mod or upload it to Steam Workshop through `Arma Tools -> Publisher`.
+
+## Try it in Vindicta
+If all is correct, you will see your faction in faction selection screen at game start.
+To be sure, search through .rpt file for errors. Use the class name you provided in `config.cpp` as search filter.
+
+For this example the lines in the rpt file are:
+```
+ 3:43:49 "[Template] Initializing loadouts from addon: MilitaryFactionExample, path: VinFactionExample\initLoadouts.sqf"
+ 3:43:49 "addLoadout: VinFactionExample\loadouts\TheHunterDude.sqf"
+ 3:43:49 "addLoadout: VinFactionExample\loadouts\TheSuperDude.sqf"
+```
+
+```
+ 3:43:49 "[Template] Initializing faction from addon: MilitaryFactionExample, path: VinFactionExample\initMilitary.sqf"
+ 3:43:49 "[Template] Initializing template from file: VinFactionExample\initMilitary.sqf"
+```
