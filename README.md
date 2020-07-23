@@ -8,8 +8,9 @@ Rules for creating factions and loadouts through this method are same as for the
 
 # How to use
 
-## 1. Install these tools:
-1. [Arma Tools](https://store.steampowered.com/app/233800/Arma_3_Tools/)
+## 1. Requirements
+1. Install [Arma Tools](https://store.steampowered.com/app/233800/Arma_3_Tools/)
+2. **NO** knowledge of how to build an arma addon is required. Build script will handle this.
 
 ## 2. Modify these files:
 Modify these files by providing proper names, descriptions and links wherever you see `<ChangeMe>`:
