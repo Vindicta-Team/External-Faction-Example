@@ -44,6 +44,8 @@ Loadouts can be added to `addon\loadouts` folder. File name of the loadout file 
 
 ## 4. Build arma addon
 
+If you have just installed Arma Tools, you might need to run it at least once to finish setup. You can launch the tools from Steam.
+
 Open `buildArmaMod.ps1`, find this line:
 `$armaToolsFolder = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"`
 
