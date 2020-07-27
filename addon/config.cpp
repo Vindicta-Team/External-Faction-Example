@@ -27,6 +27,7 @@ class VinExternalFactions {
 	// Add a new class per each new faction (military or civilian or police)
 	// Class name must be unique!
 	class MilitaryFactionExample : VinExternalFactionBase {
+		// File paths must use the PATH_TO_FILE(...) macro like below, otherwise Arma won't find your file
 		loadoutsInitFile = PATH_TO_FILE(initLoadouts.sqf);
 		file = PATH_TO_FILE(initMilitary.sqf);	// Must contain valid bath, otherwise it is ignored
 		version = 1; // Don't change this!
