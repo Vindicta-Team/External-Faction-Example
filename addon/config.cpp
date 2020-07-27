@@ -11,9 +11,13 @@ class CfgPatches
 
 		// Minimum compatible version. When the game's version is lower, pop-up warning will appear when launching the game.
 		requiredVersion = 1.60; 
+		
 		// Required addons, used for setting load order.
 		// When any of the addons is missing, pop-up warning will appear when launching the game.
-		requiredAddons[] = { "vindicta_main" }; // Don't touch this!
+		// ! ! ! Add the addons requited by your faction here as well, same values as those you would specify in your faction file
+		// ! ! ! But keep "vindicta_main" entry here as well!
+		requiredAddons[] = { "vindicta_main" };
+		
 		// List of objects (CfgVehicles classes) contained in the addon. Important also for Zeus content (units and groups) unlocking.
 		units[] = {};
 		// List of weapons (CfgWeapons classes) contained in the addon.
