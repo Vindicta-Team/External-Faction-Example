@@ -10,14 +10,16 @@ $pboFileName = Get-Content -Path "PBO_FILE_NAME.txt" -TotalCount 1
 $modBuildPath = "_build\@$pboFileName"
 
 
-"Ensure directories..`n"
+"Ensure directories, clear temp folder..`n"
 New-Item "_build" -ItemType Directory -Force > $null
 forEach ($folder in (Get-Childitem -directory -name "_build")) {
     Remove-Item "_build\$folder" -Recurse -Force
 }
+New-Item "_build\temp" -ItemType Directory -Force > $null
 New-Item $modBuildPath -ItemType Directory -Force > $null
 New-Item "$modBuildPath\addons" -ItemType Directory -Force > $null
 New-Item "$modBuildPath\keys" -ItemType Directory -Force > $null
+
 
 
 "Copy extra files..`n"
@@ -53,10 +55,10 @@ Rename-Item "$modBuildPath\addons\addon" "$pboFileName"
 
 "Build pbos...`n"
 
-& "$armaToolsFolder\AddonBuilder\AddonBuilder.exe" "$PSScriptRoot\$modBuildPath\addons\$pboFileName" "$PSScriptRoot\$modBuildPath\addons" -packonly -prefix="$pboFileName"
+& "$armaToolsFolder\AddonBuilder\AddonBuilder.exe" "$PSScriptRoot\$modBuildPath\addons\$pboFileName" "$PSScriptRoot\$modBuildPath\addons" -packonly -prefix="$pboFileName" -temp="$PSScriptRoot\_build\temp"
 
 
-"Delete temp folder..`n"
+"Delete unpacked addon folder..`n"
 Remove-Item "$modBuildPath\addons\$pboFileName" -Recurse -Force
 
 "`nCreate key..."
