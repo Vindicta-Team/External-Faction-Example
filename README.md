@@ -17,8 +17,7 @@ Modify these files by providing proper names, descriptions and links wherever yo
 
 - `mod.cpp`
 - `addon\config.cpp`
-
-Edit `PBO_FILE_NAME.txt`. Its content must contain a proper string without spaces or 'weird' characters and without a newline at the end. It also must be unique as it will be PBO file name loaded by Arma. 
+- **Edit `PBO_FILE_NAME.txt`.** Its content must contain a proper string without spaces or 'weird' characters and without a newline at the end. It also must be unique as it will be PBO file name loaded by Arma. 
 
 ## 3. Add faction and loadouts
 
