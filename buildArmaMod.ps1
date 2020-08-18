@@ -2,10 +2,16 @@ Push-Location
 
 $armaToolsFolder = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"
 
-
 $pboFileName = Get-Content -Path "PBO_FILE_NAME.txt" -TotalCount 1
 "Read PBO file name: $pboFileName`n"
 
+# Ensure that PBO file name has been specified
+if ($pboFileName -eq "VinFactionExample") {
+    "ERROR: You must modify PBO_FILE_NAME.txt and provide a unique PBO name."
+    "`nPlease read the instructions at Github:`nhttps://github.com/Vindicta-Team/External-Faction-Example/blob/master/README.md#2-modify-these-files"
+    pause
+    exit 1
+}
 
 $modBuildPath = "_build\@$pboFileName"
 
